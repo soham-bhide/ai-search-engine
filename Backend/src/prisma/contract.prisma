@@ -1,0 +1,34 @@
+// use prisma-next
+
+model User{
+  id String @id @default(uuid())
+  email String @unique
+  name String
+  supabaseId String @unique
+  provider AuthProvider
+  conversations Conversation[]
+}
+
+model Conversation{  
+  id String @id @default(uuid())
+  title String?
+  slug String
+  userId String
+  messages Message[]
+  user User @relation(fields: [userId], references:[id])
+
+}
+model Message{
+  id Int @id @default(autoincrement())
+  content String
+  role String
+  conversationId String
+  createdAt DateTime @default(now())
+  conversation Conversation @relation(fields: [conversationId], references:[id])
+
+}
+
+enum AuthProvider {
+  Github
+}
+

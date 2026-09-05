@@ -36,7 +36,7 @@ app.post("/ask", async (req, res) => {
     for await (const textpart of result.textStream){
         res.write(textpart);
     }
-         const finalsearchresults = webSearchResults.map((r) => r.url);
+    const finalsearchresults = webSearchResults.map((r) => r.url);
     res.setHeader("X-Sources",finalsearchresults)   
     res.write("<Sources>")
     res.write(JSON.stringify({sources:finalsearchresults}));

@@ -1,8 +1,3 @@
-node_modules
 .env
-!.env.example
-dist
-.next
-*.log
-.DS_Store
-.openai
+node_modules/
+.claude/
